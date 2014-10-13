@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.weeklyreport.domain.WeeklyReport">
+
+    <select id="select" resultType="cn.weeklyreport.domain.WeeklyReport" parameterType="java.util.Map">
+       Select * from WeeklyReport Where 1=1
+       <if test="requestLogFrom !=null">
+           and requestLogFrom >= #{requestLogFrom}
+       </if>
+        <if test="requestLogTo !=null">
+            <![CDATA[  and requestLogTo < #{requestLogTo}   ]]>
+        </if>
+        <if test="exceptionLogFrom !=null">
+            and exceptionLogFrom >= #{exceptionLogFrom}
+        </if>
+        <if test="exceptionLogTo !=null">
+            <![CDATA[    and exceptionLogTo < #{exceptionLogTo}  ]]>
+        </if>
+        <if test="type !=null">
+            and type = #{type}
+        </if>
+
+        order by CreateDate desc
+    </select>
+
+
+    <select id="selectById" resultType="cn.weeklyreport.domain.WeeklyReport" parameterType="java.lang.String">
+         Select * from WeeklyReport Where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="cn.weeklyreport.domain.WeeklyReport">
+
+        INSERT INTO dbo.WeeklyReport
+                ( Id ,
+                  ServerName,
+                  RequestLogFrom ,
+                  RequestLogTo ,
+                  ExceptionLogFrom ,
+                  ExceptionLogTo ,
+                  Type ,
+                  Description
+                )
+        VALUES  (   #{id} ,
+                 #{serverName},
+                 #{requestLogFrom}  ,
+                 #{requestLogTo} ,
+                 #{exceptionLogFrom}  ,
+                 #{exceptionLogTo} ,
+                   #{type} ,
+                 #{description}
+                )
+
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete  from dbo.WeeklyReport where id=#{id}
+    </delete>
+</mapper>

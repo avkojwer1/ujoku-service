@@ -1,4 +1,4 @@
-package com.ujoku;
+package com.ujoku.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
