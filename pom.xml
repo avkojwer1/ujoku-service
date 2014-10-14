@@ -18,12 +18,6 @@
         <aspectj-version>1.7.4</aspectj-version>
     </properties>
 
-    <parent>
-        <groupId>com.labillusion</groupId>
-        <artifactId>core</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
     <dependencies>
         <dependency>
             <groupId>com.labillusion</groupId>
@@ -32,11 +26,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>4.0.0.RELEASE</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
