@@ -13,7 +13,7 @@ public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
         StopWatch stopWatch = new StopWatch();
-		model.addAttribute("message", "Hello world!" +  StringUtils.hasText("sdafsf") + stopWatch.elapsedTime());
+		model.addAttribute("message", "我是啊啊啊啊!" +  StringUtils.hasText("sdafsf") + stopWatch.elapsedTime());
 
 		return "hello";
 	}
