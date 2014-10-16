@@ -28,7 +28,7 @@
     <context:component-scan base-package="com.ujoku, com.labillusion.core" />
 
     <!-- 数据库配置文件位置 -->
-    <context:property-placeholder location="classpath:/jdbc.properties" />
+    <context:property-placeholder location="classpath:/jdbc.properties, classpath:/settings.properties" />
     <!-- 配置dbcp数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -62,5 +62,10 @@
 
     <!-- 导入类扫描的注解解析器和事务的注解析器 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="runTimeSetting" class="com.labillusion.core.platform.runtime.RuntimeSettings">
+        <property name="environment" value="${settings.env}">
+        </property>
+    </bean>
 
 </beans>
