@@ -3,5 +3,13 @@ body{font-size:12px; font-family:"宋体";}
 
 input.textbox{width: 300px;}
 
-#tabs{height: 600px;}
+#tabs{height: 400px;}
 #tabs div{margin-bottom: 5px;}
+
+#d_param{
+    margin-top: 5px;
+}
+
+#tb_param td{
+    word-break:keep-all;
+}

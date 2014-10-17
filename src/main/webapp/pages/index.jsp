@@ -13,25 +13,35 @@
         </ul>
         <div id="tabs-1">
             <div>
-                AppID:<input class="textbox" type="text" id="AppId" value="09706EE72CC34430B6B67DA92F7C0394"/>
-                AppKey:<input class="textbox" type="text" id="AppKey" value="F48B428C380E4D6181AE88CED2C612B5"/>
+                ClientId:<select></select>
+                SecretKey:<input class="textbox" type="text" id="secretKey" value="F48B428C380E4D6181AE88CED2C612B5"/>
 
             </div>
 
             <div>
-                <input type="button" value="Create Visitor ID" onclick="createVisitorId()"/>
+                <input type="button" value="Create Visitor ID" onclick="visitor.create();"/>
                 VisitorID:<input class="textbox" type="text" id="visitorId"/>&nbsp;&nbsp;
 
             </div>
         </div>
+    </div>
 
+    <div id="d_param" class="ui-tabs ui-corner-all">
+        <div style="float:left;width:250px; margin:0 10px 10px 0;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <strong style="margin-left: 5px;">HTTP Header:</strong>
+            <table id="tb_h_param">
+                <tr>
+                    <td>ClientId:</td>
+                    <td><input type="text" id="p_clientId"/></td>
+                </tr>
+                <tr>
+                    <td>SecretKey:</td>
+                    <td><input type="text" id="p_secretKey"/></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 <%@ include file="common/common_js.jsp"%>
 
-<script>
-    $(function() {
-        $( "#tabs" ).tabs();
-    });
-</script>
 </html>
