@@ -41,4 +41,15 @@ public class Client {
     public void setStatus(String status) {
         Status = status;
     }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", clientName='" + clientName + '\'' +
+                ", secretKey='" + secretKey + '\'' +
+                ", Status='" + Status + '\'' +
+                '}';
+    }
 }
