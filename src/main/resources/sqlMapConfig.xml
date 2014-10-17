@@ -8,5 +8,6 @@
     <mappers>
         <!-- 映射文件的位置 -->
         <!--<mapper resource="mapper/WeeklyReport.xml" />-->
+        <mapper resource="mapper/Client.xml" />
     </mappers>
 </configuration>
