@@ -41,6 +41,8 @@
             </table>
         </div>
     </div>
+
+    <div id="resultShow"></div>
 </body>
 <%@ include file="common/common_js.jsp"%>
 
