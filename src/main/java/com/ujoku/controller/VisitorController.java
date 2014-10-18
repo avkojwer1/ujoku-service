@@ -34,12 +34,16 @@ public class VisitorController extends RESTController {
 
 	}
 
-    @RequestMapping(value="/visitor/create", method = RequestMethod.GET)
-    public  List<Client>  createVisitor() {
+    @RequestMapping(value="/visitor/create", method = RequestMethod.POST)
+    @ResponseBody
+    public Visitor create() {
 
-        List<Client> list = clientService.selectList(null);
-        return list;
+        Visitor visitor = new Visitor();
+        visitor.setId(UUIDUtils.create());
+
+        return visitor;
     }
+
 
 
 }

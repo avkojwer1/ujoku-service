@@ -13,21 +13,28 @@
         </ul>
         <div id="tabs-1">
             <div>
-                ClientId:<select></select>
+                ClientId:
+                <select onchange="clientChange(this)">
+                    <s:forEach items="${clientList}" var="item">
+                       <option key="${item.secretKey}">${item.clientName}</option>
+                    </s:forEach>
+                </select>
                 SecretKey:<input class="textbox" type="text" id="secretKey" value="F48B428C380E4D6181AE88CED2C612B5"/>
-
             </div>
 
             <div>
                 <input type="button" value="Create Visitor ID" onclick="visitor.create();"/>
                 VisitorID:<input class="textbox" type="text" id="visitorId"/>&nbsp;&nbsp;
-
+            </div>
+            <div>
+                <input type="button" value="Create Session ID" onclick="session.create()"/>
+                SessionId:<input class="textbox" type="text" id="sessionId"/>&nbsp;&nbsp;
             </div>
         </div>
     </div>
 
     <div id="d_param" class="ui-tabs ui-corner-all">
-        <div style="float:left;width:250px; margin:0 10px 10px 0;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <div style="float:left;width:300px; margin:0 10px 10px 0;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
             <strong style="margin-left: 5px;">HTTP Header:</strong>
             <table id="tb_h_param">
                 <tr>

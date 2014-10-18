@@ -12,4 +12,5 @@ input.textbox{width: 300px;}
 
 #tb_param td{
     word-break:keep-all;
+    width: 50px;
 }
