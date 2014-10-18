@@ -14,7 +14,7 @@
         <div id="tabs-1">
             <div>
                 ClientId:
-                <select onchange="clientChange(this)">
+                <select id="selClient" onchange="clientChange(this)">
                     <s:forEach items="${clientList}" var="item">
                        <option key="${item.secretKey}">${item.clientName}</option>
                     </s:forEach>

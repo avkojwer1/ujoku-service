@@ -17,6 +17,10 @@ function showResult(settings){
         type: settings.type,
         url:settings.url,
         dataType: settings.dataType,
+        headers:{
+            "Client-Id": $("#selClient").val(),
+            "Secret-Key" : $("#secretKey").val()
+        },
         success:function(data){
 
             window.jsonParser.jsonContent = data;
