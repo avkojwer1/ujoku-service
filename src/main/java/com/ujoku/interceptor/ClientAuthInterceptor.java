@@ -1,6 +1,7 @@
 package com.ujoku.interceptor;
 
 import com.labillusion.core.platform.exception.UserAuthorizationException;
+import com.labillusion.core.util.AssertUtils;
 import com.labillusion.core.util.StringUtils;
 import com.ujoku.domain.Client;
 import com.ujoku.service.ClientService;
@@ -28,18 +29,15 @@ public class ClientAuthInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        if(url.endsWith("js") || url.endsWith("css")){
+        if(url.endsWith("js") || url.endsWith("css") || url.endsWith("png") || url.endsWith("jpg")){
             return true;
         }
 
         String clientId = request.getHeader(AuthConstant.HEADER_CLIENT_ID);
         String secretKey = request.getHeader(AuthConstant.HEADER_Secret_Key);
 
-        if(!StringUtils.hasText(clientId))
-            throw new UserAuthorizationException("client-Id can not be null!");
-
-        if(!StringUtils.hasText(secretKey))
-            throw new UserAuthorizationException("secret-key can not be null!");
+        AssertUtils.assertHasText(clientId, "client-Id can not be null!");
+        AssertUtils.assertHasText(secretKey, "secret-key can not be null!");
 
         List<Client> list = clientService.selectList(null);
 

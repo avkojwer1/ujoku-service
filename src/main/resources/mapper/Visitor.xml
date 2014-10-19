@@ -3,13 +3,13 @@
 <mapper namespace="com.ujoku.domain.Visitor">
 
     <select id="selectById" resultType="com.ujoku.domain.Visitor" parameterType="java.lang.String">
-        Select Id,user_id from visitor where id=#id#
+        Select id,user_id from visitor where id=#{id}
     </select>
 
     <insert id="insert" parameterType="com.ujoku.domain.Visitor" >
 
         INSERT INTO visitor
-        ( Id ,
+        ( id ,
           user_id
         )
         VALUES  (   #{id} ,
