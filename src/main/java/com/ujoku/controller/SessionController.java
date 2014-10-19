@@ -28,6 +28,9 @@ public class SessionController extends RESTController {
             httpSession = request.getSession(true);
         }
 
+        if(httpSession == null)
+            httpSession = request.getSession(true);
+
         session.setId(httpSession.getId());
 
         return session;

@@ -6,7 +6,7 @@ import com.ujoku.view.domain.GoodsView;
 import org.junit.Test;
 
 /**
- * Created by Administrator on 2014/10/19.
+ * Created by Greg on 2014/10/19.
  */
 public class GoodsViewBuilderTest {
 
