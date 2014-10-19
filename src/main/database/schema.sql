@@ -6,9 +6,17 @@ Create table Client (
   Id INT AUTO_INCREMENT PRIMARY KEY,
   ClientName VARCHAR(32),
   SecretKey VARCHAR(100),
-  Status VARCHAR(1)
+  Status VARCHAR(1),
+  CreateDate datetime DEFAULT CURRENT_TIMESTAMP()
 );
 
-INSERT INTO Client(ClientName,SecretKey,Status) value ('iPhone','71487ab01d4c5807965267f51e22674f', 'A');
-INSERT INTO Client(ClientName,SecretKey,Status) value ('MWeb','aa386dedc62de1fc75920745e0b81f5f', 'A');
-INSERT INTO Client(ClientName,SecretKey,Status) value ('Desktop','63c6a0a078b0e6996326199005e9d641', 'A');
+INSERT INTO Client(ClientName,SecretKey,Status) value ('iPhone','5CA0516726987400677A12F4082D6D7B', 'A');
+INSERT INTO Client(ClientName,SecretKey,Status) value ('MWeb','D4FC0582200925E8EB4064A24A10700E', 'A');
+INSERT INTO Client(ClientName,SecretKey,Status) value ('Desktop','14E9BA5AE327402F4F8B41BF06864D2E', 'A');
+
+
+Create table Visitor(
+  Id varchar(32),
+  user_id int,
+  CreateDate datetime DEFAULT CURRENT_TIMESTAMP()
+)

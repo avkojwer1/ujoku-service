@@ -1,6 +1,6 @@
 package com.ujoku.dao.impl;
 
-import com.labillusion.core.database.base.mybatis.impl.BaseDaoImpl;
+import com.labillusion.core.database.base.mybatis.dao.impl.BaseDaoImpl;
 import com.ujoku.dao.ClientDao;
 import com.ujoku.domain.Client;
 import org.springframework.stereotype.Repository;

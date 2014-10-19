@@ -11,5 +11,6 @@
         <!-- 映射文件的位置 -->
         <!--<mapper resource="mapper/WeeklyReport.xml" />-->
         <mapper resource="mapper/Client.xml" />
+        <mapper resource="mapper/Visitor.xml" />
     </mappers>
 </configuration>

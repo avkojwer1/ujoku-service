@@ -4,7 +4,7 @@ package com.ujoku.dao;
 import com.labillusion.core.database.base.mybatis.dao.BaseDao;
 
 /**
- * Created by Administrator on 2014/10/17.
+ * Created by Administrator on 14-10-19.
  */
-public interface ClientDao<T> extends BaseDao<T> {
+public interface VisitorDao<T> extends BaseDao<T> {
 }

@@ -14,12 +14,12 @@
         <div id="tabs-1">
             <div>
                 ClientId:
-                <select id="selClient" onchange="clientChange(this)">
+                <select id="selClient">
                     <s:forEach items="${clientList}" var="item">
                        <option key="${item.secretKey}">${item.clientName}</option>
                     </s:forEach>
                 </select>
-                SecretKey:<input class="textbox" type="text" id="secretKey" value="F48B428C380E4D6181AE88CED2C612B5"/>
+                SecretKey:<input class="textbox" type="text" id="secretKey"/>
             </div>
 
             <div>
@@ -34,7 +34,7 @@
     </div>
 
     <div id="d_param" class="ui-tabs ui-corner-all">
-        <div style="float:left;width:300px; margin:0 10px 10px 0;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <div style="float:left;width:300px; margin:0 10px 10px 0;height: 400px;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
             <strong style="margin-left: 5px;">HTTP Header:</strong>
             <table id="tb_h_param">
                 <tr>
@@ -47,9 +47,15 @@
                 </tr>
             </table>
         </div>
+
+        <div style="float:left;width: 1200px;">
+
+            <div id="resultShow"></div>
+        </div>
     </div>
 
-    <div id="resultShow"></div>
+
+
 </body>
 <%@ include file="common/common_js.jsp"%>
 

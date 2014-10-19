@@ -22,7 +22,15 @@ public class ClientAuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        String url = request.getRequestURI();
 
+        if("/".equals(url)){
+            return true;
+        }
+
+        if(url.endsWith("js") || url.endsWith("css")){
+            return true;
+        }
 
         String clientId = request.getHeader(AuthConstant.HEADER_CLIENT_ID);
         String secretKey = request.getHeader(AuthConstant.HEADER_Secret_Key);
@@ -35,8 +43,30 @@ public class ClientAuthInterceptor extends HandlerInterceptorAdapter {
 
         List<Client> list = clientService.selectList(null);
 
+        CheckClient(clientId, secretKey, list);
 
         return true;
+    }
+
+    /**
+     * 进行数据库匹配
+     * @param clientId
+     * @param secretKey
+     * @param list
+     */
+    private void CheckClient(String clientId, String secretKey, List<Client> list) {
+        boolean check = false;
+
+        for(Client item : list){
+            if(StringUtils.equals(clientId, item.getClientName()) && StringUtils.equals(secretKey, item.getSecretKey())){
+                check = true;
+            }
+        }
+
+        if(!check){
+            throw new UserAuthorizationException("invalid client-id or secret-key");
+
+        }
     }
 
 

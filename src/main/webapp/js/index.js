@@ -3,13 +3,14 @@ $(function() {
 
     window.jsonParser = new JsonParser("");
 
+    $("#secretKey").val($("option:selected", $("#selClient")).attr("key"));
+
+    $("#selClient").change(function(){
+        var optionSelected = $("option:selected", this);
+        $("#secretKey").val($(optionSelected).attr("key"));
+    })
 });
 
-
-function clientChange(el){
-    var optionSelected = $("option:selected", el);
-    $("#secretKey").val($(optionSelected).attr("key"));
-}
 
 function showResult(settings){
     $.fn.mask();

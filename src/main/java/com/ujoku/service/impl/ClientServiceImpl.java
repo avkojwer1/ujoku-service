@@ -1,10 +1,12 @@
 package com.ujoku.service.impl;
 
-import com.labillusion.core.database.base.mybatis.BaseDao;
+
+import com.labillusion.core.database.base.mybatis.dao.BaseDao;
+import com.labillusion.core.database.base.mybatis.service.base.impl.BaseServiceImpl;
 import com.ujoku.dao.ClientDao;
 import com.ujoku.domain.Client;
 import com.ujoku.service.ClientService;
-import com.ujoku.service.base.impl.BaseServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
