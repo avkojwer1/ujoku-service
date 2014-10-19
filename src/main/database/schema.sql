@@ -1,7 +1,7 @@
-/*Create DB*/
-CREATE DATABASE `ujoku` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 
 /*API Authorized*/
+DROP TABLE IF EXISTS `Client`;
 Create table Client (
   Id INT AUTO_INCREMENT PRIMARY KEY,
   ClientName VARCHAR(32),
@@ -14,7 +14,7 @@ INSERT INTO Client(ClientName,SecretKey,Status) value ('iPhone','5CA051672698740
 INSERT INTO Client(ClientName,SecretKey,Status) value ('MWeb','D4FC0582200925E8EB4064A24A10700E', 'A');
 INSERT INTO Client(ClientName,SecretKey,Status) value ('Desktop','14E9BA5AE327402F4F8B41BF06864D2E', 'A');
 
-
+DROP TABLE IF EXISTS `Visitor`;
 Create table Visitor(
   Id varchar(32),
   user_id int,

@@ -1,5 +1,7 @@
 package com.ujoku.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * Created by Administrator on 2014/10/18.
  */

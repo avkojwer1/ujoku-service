@@ -30,6 +30,9 @@
                 <input type="button" value="Create Session ID" onclick="session.create()"/>
                 SessionId:<input class="textbox" type="text" id="sessionId"/>&nbsp;&nbsp;
             </div>
+
+            <strong>Goods</strong><br/>
+            GoodsId:<input class="textbox" type="text" id="GoodsId" style="width: 100px;"/> <input type="button" value="Get Goods By Id" onclick="goods.getById();"/>
         </div>
     </div>
 

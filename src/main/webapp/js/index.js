@@ -27,11 +27,14 @@ function showResult(settings){
             window.jsonParser.jsonContent = JSON.stringify(data);;
             window.jsonParser.init();
 
-            settings.success(data);
+            if(settings.success)
+                settings.success(data);
 
             $.fn.mask.close();
         },
-        error: function(){
+        error: function(data){
+            window.jsonParser.jsonContent = JSON.stringify(data);;
+            window.jsonParser.init();
             $.fn.mask.close();
         }
     });
@@ -62,6 +65,17 @@ var session ={
             success: function(data){
                 $("#sessionId").val(data.id);
             }
+        };
+        showResult(settings);
+    }
+}
+
+var goods = {
+    getById:function(){
+        var settings = {
+            type:"Get",
+            url:"/goods/" + $("#GoodsId").val(),
+            dataType: "json"
         };
         showResult(settings);
     }
