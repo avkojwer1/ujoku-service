@@ -23,7 +23,7 @@ function showResult(settings){
         },
         success:function(data){
 
-            window.jsonParser.jsonContent = data;
+            window.jsonParser.jsonContent = JSON.stringify(data);;
             window.jsonParser.init();
 
             settings.success(data);
