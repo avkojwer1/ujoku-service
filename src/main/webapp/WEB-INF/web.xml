@@ -30,6 +30,10 @@
         <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>com.labillusion.core.platform.web.listener.SessionCollect</listener-class>
+    </listener>
+
     <!-- Spring 容器加载 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
