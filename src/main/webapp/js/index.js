@@ -18,6 +18,8 @@ function showResult(settings){
         type: settings.type,
         url:settings.url,
         dataType: settings.dataType,
+        data: settings.data,
+        contentType: "application/json",
         headers:{
             "Client-Id": $("#selClient").val(),
             "Secret-Key" : $("#secretKey").val()
@@ -74,9 +76,22 @@ var goods = {
     getById:function(){
         var settings = {
             type:"Get",
-            url:"/goods/" + $("#GoodsId").val(),
+            url:"/goods/" + $("#goodsId").val(),
             dataType: "json"
         };
+        showResult(settings);
+    },
+    search:function(){
+        var settings = {
+            type:"POST",
+            url:"/search",
+            dataType: "json",
+            data:JSON.stringify( {
+                "categoryId" : $("#categoryId").val()
+            })
+
+        };
+
         showResult(settings);
     }
 }

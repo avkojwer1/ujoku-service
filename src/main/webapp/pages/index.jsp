@@ -31,9 +31,18 @@
                 SessionId:<input class="textbox" type="text" id="sessionId"/>&nbsp;&nbsp;
             </div>
 
-            <strong>Goods</strong><br/>
-            GoodsId:<input class="textbox" type="text" id="GoodsId" style="width: 100px;"/> <input type="button" value="Get Goods By Id" onclick="goods.getById();"/>
-        </div>
+            <div>
+                <strong>Goods</strong><br/>
+                GoodsId:<input class="textbox" type="text" id="goodsId" style="width: 100px;"/>
+                    <input type="button" value="Get Goods By Id" onclick="goods.getById();"/>
+            </div>
+
+            <div>
+                <strong>Search</strong><br/>
+                CategoryId:<input class="textbox" type="text" id="categoryId" style="width: 100px;"/>
+                <input type="button" value="Search" onclick="goods.search();"/>
+            </div>
+         </div>
     </div>
 
     <div id="d_param" class="ui-tabs ui-corner-all">
@@ -51,7 +60,7 @@
             </table>
         </div>
 
-        <div style="float:left;width: 1200px;">
+        <div style="margin-left:315px; z-index:9999; position:relative;">
 
             <div id="resultShow"></div>
         </div>
