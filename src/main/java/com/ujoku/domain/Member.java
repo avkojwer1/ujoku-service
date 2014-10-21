@@ -13,6 +13,15 @@ public class Member {
     private String real_name;
     private Short gender;
     private Date birthday;
+    private long reg_time;
+
+    public long getReg_time() {
+        return reg_time;
+    }
+
+    public void setReg_time(long reg_time) {
+        this.reg_time = reg_time;
+    }
 
     public int getUser_id() {
         return user_id;

@@ -8,6 +8,7 @@ import com.ujoku.domain.Member;
 import com.ujoku.domain.Visitor;
 import com.ujoku.interceptor.VisitorInterceptor;
 import com.ujoku.requestbody.LoginForm;
+import com.ujoku.requestbody.MemberCreateForm;
 import com.ujoku.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,28 @@ public class MemberController extends RESTController {
         visitor.setUser_id(member.getUser_id());
 
         return "Successfully";
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    @ResponseBody
+    public String Logout(HttpServletRequest request) throws Exception {
+
+        HttpSession session = SessionCollect.find(request.getHeader("Session-Id"));
+        if(session != null)
+            session.invalidate();
+
+        return "Successfully";
+    }
+
+    @RequestMapping(value="/member/create", method = RequestMethod.POST)
+    @ResponseBody
+    public Member Create(@Valid @RequestBody MemberCreateForm form) throws Exception {
+        Member member = new Member();
+        member.setUser_name(form.getUserName());
+        member.setPassword(MD5.encrypt(form.getPassword()));
+        member.setReg_time(System.currentTimeMillis() / 1000L);
+        service.insert(member);
+        return null;
     }
 
 

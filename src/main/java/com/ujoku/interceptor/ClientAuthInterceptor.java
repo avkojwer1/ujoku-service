@@ -29,7 +29,7 @@ public class ClientAuthInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        if(url.endsWith("js") || url.endsWith("css") || url.endsWith("png") || url.endsWith("jpg")){
+        if(url.endsWith("js") || url.endsWith("css") || url.endsWith("png") || url.endsWith("jpg")  || url.endsWith("gif")){
             return true;
         }
 

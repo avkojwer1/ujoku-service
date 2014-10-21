@@ -27,7 +27,7 @@ public class VisitorInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.debug("VisitorInterceptor -----preHandle ---------");
+        logger.debug("VisitorInterceptor ----- preHandle -----------------------------------------------");
 
         String visitorId = request.getHeader(VISITOR_ID);
         if(!StringUtils.hasText(visitorId)){
@@ -49,7 +49,7 @@ public class VisitorInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.debug("VisitorInterceptor -----afterCompletion ---------");
+        logger.debug("VisitorInterceptor ----- afterCompletion -------------------------------------");
         Visitor visitor = (Visitor) request.getAttribute(CURRENT_VISITOR);
         service.update(visitor);
     }

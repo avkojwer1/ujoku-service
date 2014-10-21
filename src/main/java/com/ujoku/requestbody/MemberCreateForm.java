@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Created by Greg on 2014/10/20.
  */
-public class LoginForm {
+public class MemberCreateForm {
     public String getUserName() {
         return userName;
     }

@@ -107,7 +107,16 @@ var member ={
             data:JSON.stringify( {
                 "userName" : $("#userName").val(),
                 "password" : $("#password").val()
-        })
+            })
+        };
+
+        showResult(settings);
+    },
+    logout:function(){
+        var settings = {
+            type:"POST",
+            url:"/logout",
+            dataType: "json"
         };
 
         showResult(settings);

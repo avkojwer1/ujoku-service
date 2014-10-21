@@ -48,8 +48,14 @@
                 UserName:<input class="textbox" type="text" id="userName" style="width: 100px;"/>
                 Password:<input class="textbox" type="text" id="password" style="width: 100px;"/>
                 <input type="button" value="Login" onclick="member.login();"/>
+                <input type="button" value="Logout" onclick="member.logout();"/>
             </div>
          </div>
+    </div>
+
+    <div style="margin-top: 7px; height:27px;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <b>Requested URL: </b>
+        <input type="text" id="requestedUrl" style="width:70%;">
     </div>
 
     <div id="d_param" class="ui-tabs ui-corner-all">
