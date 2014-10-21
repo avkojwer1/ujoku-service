@@ -22,7 +22,9 @@ function showResult(settings){
         contentType: "application/json",
         headers:{
             "Client-Id": $("#selClient").val(),
-            "Secret-Key" : $("#secretKey").val()
+            "Secret-Key" : $("#secretKey").val(),
+            "Visitor-Id" : $("#visitorId").val(),
+            "Session-Id" : $("#sessionId").val()
         },
         success:function(data){
 
@@ -90,6 +92,22 @@ var goods = {
                 "categoryId" : $("#categoryId").val()
             })
 
+        };
+
+        showResult(settings);
+    }
+}
+
+var member ={
+    login: function(){
+        var settings = {
+            type:"POST",
+            url:"/login",
+            dataType: "json",
+            data:JSON.stringify( {
+                "userName" : $("#userName").val(),
+                "password" : $("#password").val()
+        })
         };
 
         showResult(settings);

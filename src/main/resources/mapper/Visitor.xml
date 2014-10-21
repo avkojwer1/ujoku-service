@@ -7,14 +7,25 @@
     </select>
 
     <insert id="insert" parameterType="com.ujoku.domain.Visitor" >
-
         INSERT INTO visitor
         ( id ,
-          user_id
+          user_id,
+          last_ip,
+          user_agent
         )
-        VALUES  (   #{id} ,
-        #{user_id}
+        VALUES  (
+        #{id} ,
+        #{user_id},
+        #{last_ip},
+        #{user_agent}
         )
     </insert>
 
+    <update id="updateById" parameterType="com.ujoku.domain.Visitor" >
+      Update visitor set user_id =#{user_id}, 
+          last_ip= #{last_ip},
+          user_agent = #{user_agent},
+          last_visit = CURRENT_TIMESTAMP()
+          where id=#{id}
+    </update>
 </mapper>
