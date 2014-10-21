@@ -42,6 +42,13 @@
                 CategoryId:<input class="textbox" type="text" id="categoryId" style="width: 100px;"/>
                 <input type="button" value="Search" onclick="goods.search();"/>
             </div>
+
+            <div>
+                <strong>Login</strong><br/>
+                UserName:<input class="textbox" type="text" id="userName" style="width: 100px;"/>
+                Password:<input class="textbox" type="text" id="password" style="width: 100px;"/>
+                <input type="button" value="Login" onclick="member.login();"/>
+            </div>
          </div>
     </div>
 

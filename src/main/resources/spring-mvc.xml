@@ -25,6 +25,10 @@
             <mvc:mapping path="/**" />
             <bean class="com.ujoku.interceptor.ClientAuthInterceptor" />
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.ujoku.interceptor.VisitorInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <mvc:resources mapping="/css/**" location="/css/"/>
