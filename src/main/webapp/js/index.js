@@ -131,3 +131,14 @@ var member ={
         showResult(settings);
     }
 }
+
+var cart = {
+    shoppingCart:function(){
+        var settings = {
+            type:"POST",
+            url:"/shoppingCart",
+            dataType: "json"
+        };
+        showResult(settings);
+    }
+}

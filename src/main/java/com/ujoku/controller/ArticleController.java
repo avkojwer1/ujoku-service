@@ -27,12 +27,7 @@ public class ArticleController extends RESTController {
     @RequestMapping(value="/article/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Article getArticleById(@PathVariable int id){
-        List<Article> list =  service.selectList(null);
 
-        List<Article> result = select(list, having(on(Article.class).getArticle_id(), Matchers.equalTo(id)));
-
-        if(result == null || result.size() == 0)
-            throw new ResourceNotFoundException("can not found article by id.");
-        return  result.get(0);
+        return service.selectById(id);
     }
 }

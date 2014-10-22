@@ -25,16 +25,7 @@ public class GoodsController extends RESTController {
     @RequestMapping(value="/goods/{id}", method = RequestMethod.GET)
     @ResponseBody
     public GoodsView getGoodById(@PathVariable int id) throws Exception {
-        List<Goods> list = service.selectList(null);
-
-        for (Goods item : list){
-            if(item.getGoods_id() == id){
-                return goodsViewBuilder.Create(item);
-            }
-        }
-
-        throw new ResourceNotFoundException("Can not found goods.");
-
+        return goodsViewBuilder.Create(service.selectById(id));
     }
 
 }

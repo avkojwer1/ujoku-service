@@ -56,6 +56,11 @@
                 <input type="button" value="Login" onclick="member.login();"/>
                 <input type="button" value="Logout" onclick="member.logout();"/>
             </div>
+
+            <div>
+                <strong>Cart</strong><br/>
+                <input type="button" value="Show My Cart" onclick="cart.shoppingCart();"/>
+            </div>
          </div>
     </div>
 

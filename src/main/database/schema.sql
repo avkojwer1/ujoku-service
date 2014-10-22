@@ -19,6 +19,6 @@ CREATE TABLE Visitor(
   Id VARCHAR(32),
   user_id INT,
   last_ip VARCHAR(15),
-  user_agent VARCHAR(128),
+  user_agent VARCHAR(256),
   last_visit TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
 )
