@@ -32,25 +32,25 @@
             </div>
 
             <div>
-                <strong>Goods</strong><br/>
+                <strong>[Goods]</strong><br/>
                 GoodsId:<input class="textbox" type="text" id="goodsId" style="width: 100px;"/>
                     <input type="button" value="Get Goods By Id" onclick="goods.getById();"/>
             </div>
 
             <div>
-                <strong>Search</strong><br/>
+                <strong>[Search]</strong><br/>
                 CategoryId:<input class="textbox" type="text" id="categoryId" style="width: 100px;"/>
                 <input type="button" value="Search" onclick="goods.search();"/>
             </div>
 
             <div>
-                <strong>Article</strong><br/>
+                <strong>[Article]</strong><br/>
                 ArticleId:<input class="textbox" type="text" id="articleId" style="width: 100px;"/>
                 <input type="button" value="Get Article By Id" onclick="article.getById();"/>
             </div>
 
             <div>
-                <strong>Login</strong><br/>
+                <strong>[Login]</strong><br/>
                 UserName:<input class="textbox" type="text" id="userName" style="width: 100px;"/>
                 Password:<input class="textbox" type="text" id="password" style="width: 100px;"/>
                 <input type="button" value="Login" onclick="member.login();"/>
@@ -58,7 +58,7 @@
             </div>
 
             <div>
-                <strong>Cart</strong><br/>
+                <strong>[Cart]</strong><br/>
                 <input type="button" value="Show My Cart" onclick="cart.shoppingCart();"/>
             </div>
          </div>

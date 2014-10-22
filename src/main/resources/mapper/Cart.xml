@@ -9,4 +9,18 @@
         </if>
     </select>
 
+    <insert id="insert" parameterType="com.ujoku.domain.Cart" >
+        INSERT INTO y9_cart
+        (
+        user_id ,
+        goods_id,
+        quantity
+        )
+        VALUES  (
+        #{user_id},
+        #{goods_id},
+        #{quantity}
+        )
+    </insert>
+
 </mapper>
