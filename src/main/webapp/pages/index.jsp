@@ -44,6 +44,12 @@
             </div>
 
             <div>
+                <strong>Article</strong><br/>
+                ArticleId:<input class="textbox" type="text" id="articleId" style="width: 100px;"/>
+                <input type="button" value="Get Article By Id" onclick="article.getById();"/>
+            </div>
+
+            <div>
                 <strong>Login</strong><br/>
                 UserName:<input class="textbox" type="text" id="userName" style="width: 100px;"/>
                 Password:<input class="textbox" type="text" id="password" style="width: 100px;"/>

@@ -31,6 +31,16 @@ public class Article {
 
     private int article_id;
     private String title;
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "article_id=" + article_id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     private String content;
 
 }

@@ -42,7 +42,6 @@ function showResult(settings){
             $.fn.mask.close();
         }
     });
-
 }
 
 
@@ -91,9 +90,19 @@ var goods = {
             data:JSON.stringify( {
                 "categoryId" : $("#categoryId").val()
             })
-
         };
 
+        showResult(settings);
+    }
+}
+
+var article = {
+    getById:function(){
+        var settings = {
+            type:"Get",
+            url:"/article/" + $("#articleId").val(),
+            dataType: "json"
+        };
         showResult(settings);
     }
 }
