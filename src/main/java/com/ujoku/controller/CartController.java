@@ -11,6 +11,7 @@ import com.ujoku.service.CartService;
 import com.ujoku.service.GoodsService;
 import com.ujoku.view.builder.ShoppingCartViewBuilder;
 import com.ujoku.view.domain.ShoppingCartView;
+import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static ch.lambdaj.Lambda.having;
+import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.select;
 
 
 /**
@@ -55,13 +61,28 @@ public class CartController extends RESTController {
         HttpSession session =  SessionCollect.find(request);
         Member member = (Member) session.getAttribute("Member");
 
+        Map<String, Object> query = new HashMap<String, Object>();
+        query.put("user_id", member.getUser_id());
+        List<Cart> carts = cartService.selectList(query);
+
+        List<Cart> existedList = select(carts, having(on(Cart.class).getGoods_id(),  Matchers.equalTo(goods.getGoods_id())));
+        Cart existedItem = null;
+        if(existedList != null && existedList.size() > 0){
+            existedItem = existedList.get(0);
+        }
+
+        //如果已经存在该goods, 就更新qty
+        if(existedItem != null){
+            existedItem.setQuantity(existedItem.getQuantity() + form.getQuantity());
+            cartService.update(existedItem);
+            return  existedItem;
+        }
+        //如果不存在就新增
         Cart cart = new Cart();
         cart.setGoods_id(goods.getGoods_id());
         cart.setQuantity(form.getQuantity());
         cart.setUser_id(member.getUser_id());
-
         cartService.insert(cart);
-
         return cart;
     }
 

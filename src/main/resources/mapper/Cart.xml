@@ -23,4 +23,8 @@
         )
     </insert>
 
+    <update id="updateById" parameterType="com.ujoku.domain.Cart">
+        update y9_cart set quantity =  #{quantity} where rec_id =  #{rec_id}
+    </update>
+
 </mapper>
