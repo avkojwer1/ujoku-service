@@ -19,8 +19,10 @@ public class GoodsServiceTest extends BaseTest {
     @Test
     public void selectListTest() {
         org.springframework.util.Assert.isTrue(service.selectList(null).size() > 0);
-
     }
 
-
+    @Test
+    public void selectById(){
+        System.out.println(service.selectList(null).get(0));
+    }
 }

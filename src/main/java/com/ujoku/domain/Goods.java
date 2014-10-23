@@ -7,6 +7,48 @@ public class Goods {
 
     private String type;
     private String tags;
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "type='" + type + '\'' +
+                ", tags='" + tags + '\'' +
+                ", store_id=" + store_id +
+                ", spec_qty=" + spec_qty +
+                ", spec_name_2='" + spec_name_2 + '\'' +
+                ", spec_name_1='" + spec_name_1 + '\'' +
+                ", recommended=" + recommended +
+                ", prizeinfo='" + prizeinfo + '\'' +
+                ", price=" + price +
+                ", mgrade_year='" + mgrade_year + '\'' +
+                ", mgrade_norm=" + mgrade_norm +
+                ", mgrade_ingredients='" + mgrade_ingredients + '\'' +
+                ", mgrade_grade='" + mgrade_grade + '\'' +
+                ", mgrade_dis='" + mgrade_dis + '\'' +
+                ", mgrade_areas='" + mgrade_areas + '\'' +
+                ", mgrade_alcohol='" + mgrade_alcohol + '\'' +
+                ", market_price=" + market_price +
+                ", last_update=" + last_update +
+                ", if_show=" + if_show +
+                ", goods_name='" + goods_name + '\'' +
+                ", goods_id=" + goods_id +
+                ", description='" + description + '\'' +
+                ", default_spec=" + default_spec +
+                ", default_image2='" + default_image2 + '\'' +
+                ", default_image='" + default_image + '\'' +
+                ", closed=" + closed +
+                ", close_reason=" + close_reason +
+                ", cate_name='" + cate_name + '\'' +
+                ", cate_id_4=" + cate_id_4 +
+                ", cate_id_3=" + cate_id_3 +
+                ", cate_id_2=" + cate_id_2 +
+                ", cate_id_1=" + cate_id_1 +
+                ", cate_id=" + cate_id +
+                ", brand='" + brand + '\'' +
+                ", add_time=" + add_time +
+                '}';
+    }
+
     private int store_id;
     private int spec_qty;
     private String spec_name_2;
@@ -30,6 +72,32 @@ public class Goods {
     private int default_spec;
     private String default_image2;
     private String default_image;
+    private String defaultImage;
+
+    public String getDefaultImage() {
+        return defaultImage;
+    }
+
+    public void setDefaultImage(String defaultImage) {
+        this.defaultImage = defaultImage;
+    }
+
+    public String getDefault_image2() {
+        return default_image2;
+    }
+
+    public void setDefault_image2(String default_image2) {
+        this.default_image2 = default_image2;
+    }
+
+    public String getDefault_image() {
+        return default_image;
+    }
+
+    public void setDefault_image(String default_image) {
+        this.default_image = default_image;
+    }
+
     private int closed;
     private int close_reason;
     private String cate_name;
@@ -223,22 +291,6 @@ public class Goods {
 
     public void setDefault_spec(int default_spec) {
         this.default_spec = default_spec;
-    }
-
-    public String getDefault_image2() {
-        return default_image2;
-    }
-
-    public void setDefault_image2(String default_image2) {
-        this.default_image2 = default_image2;
-    }
-
-    public String getDefault_image() {
-        return default_image;
-    }
-
-    public void setDefault_image(String default_image) {
-        this.default_image = default_image;
     }
 
     public int getClosed() {
