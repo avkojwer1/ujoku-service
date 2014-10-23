@@ -1,6 +1,7 @@
 package com.ujoku.service.test;
 
 import com.ujoku.base.BaseTest;
+import com.ujoku.domain.Cart;
 import com.ujoku.service.CartService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,15 @@ public class CartServiceTest extends BaseTest {
         service.selectList(query);
     }
 
+    @Test
+    public void selectByIdTest(){
+        Cart cart = (Cart) service.selectById("104");
+        System.out.println(cart);
+    }
 
+    @Test
+    public void deleteByIdTest(){
+        int result= service.deleteById("104");
+        System.out.println(result);
+    }
 }

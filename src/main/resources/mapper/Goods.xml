@@ -38,7 +38,7 @@
             ,cate_id_1
             ,cate_id
             ,brand
-            ,add_time      from     y9_goods
+            ,add_time from y9_goods
     </select>
 
 

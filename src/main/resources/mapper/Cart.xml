@@ -9,6 +9,10 @@
         </if>
     </select>
 
+    <select id="selectById" resultType="com.ujoku.domain.Cart" parameterType="java.lang.String">
+        Select * from y9_cart where rec_id=#{rec_id}
+    </select>
+
     <insert id="insert" parameterType="com.ujoku.domain.Cart" useGeneratedKeys="true" keyProperty="user_id">
         INSERT INTO y9_cart
         (
@@ -24,7 +28,10 @@
     </insert>
 
     <update id="updateById" parameterType="com.ujoku.domain.Cart">
-        update y9_cart set quantity =  #{quantity} where rec_id =  #{rec_id}
+        update y9_cart set quantity = #{quantity} where rec_id =  #{rec_id}
     </update>
 
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from y9_cart where rec_id = #{rec_id}
+    </delete>
 </mapper>

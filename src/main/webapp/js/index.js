@@ -152,5 +152,25 @@ var cart = {
             })
         };
         showResult(settings);
+    },
+    delete : function(){
+        var settings = {
+            type:"Delete",
+            url:"/cart/" + $("#c_cartId").val(),
+            dataType: "json"
+        };
+        showResult(settings);
+    },
+    update : function(){
+        var settings = {
+            type:"Put",
+            url:"/cart/update/",
+            dataType: "json",
+            data:JSON.stringify( {
+                "cart_id" : $("#c_cartId2").val(),
+                "quantity" : $("#c_qty2").val()
+            })
+        };
+        showResult(settings);
     }
 }

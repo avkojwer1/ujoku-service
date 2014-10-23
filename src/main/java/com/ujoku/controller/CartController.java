@@ -1,12 +1,15 @@
 package com.ujoku.controller;
 
+import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.platform.web.listener.SessionCollect;
 import com.labillusion.core.platform.web.rest.RESTController;
+import com.labillusion.core.util.MessageSourceUtils;
 import com.ujoku.domain.Cart;
 import com.ujoku.domain.Goods;
 import com.ujoku.domain.Member;
 import com.ujoku.interceptor.LoginRequired;
 import com.ujoku.request.body.AddToCartForm;
+import com.ujoku.request.body.UpdateCartForm;
 import com.ujoku.service.CartService;
 import com.ujoku.service.GoodsService;
 import com.ujoku.view.builder.ShoppingCartViewBuilder;
@@ -34,18 +37,19 @@ import static ch.lambdaj.Lambda.select;
 public class CartController extends RESTController {
 
     @Autowired
-    public CartService cartService;
+    protected CartService cartService;
     @Autowired
-    public GoodsService goodsService;
+    protected GoodsService goodsService;
     @Autowired
-    public ShoppingCartViewBuilder shoppingCartViewBuilder;
+    protected ShoppingCartViewBuilder shoppingCartViewBuilder;
+    @Autowired
+    protected MessageSourceUtils messageSourceUtils;
 
     @RequestMapping(value="/shoppingCart", method = RequestMethod.POST)
     @ResponseBody
     @LoginRequired
     public ShoppingCartView shoppingCart(HttpServletRequest request) throws Exception {
-        HttpSession session = SessionCollect.find(request);
-        Member member = (Member) session.getAttribute("Member");
+        Member member = getMember(request);
 
         ShoppingCartView view = shoppingCartViewBuilder.builderShoppingCartView(member.getUser_id());
 
@@ -58,8 +62,7 @@ public class CartController extends RESTController {
     public Cart add(@Valid @RequestBody AddToCartForm form, HttpServletRequest request){
         //判断Goods是否存在
         Goods goods = goodsService.selectById(form.getGoods_id());
-        HttpSession session =  SessionCollect.find(request);
-        Member member = (Member) session.getAttribute("Member");
+        Member member = getMember(request);
 
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("user_id", member.getUser_id());
@@ -86,4 +89,39 @@ public class CartController extends RESTController {
         return cart;
     }
 
+    private Member getMember(HttpServletRequest request) {
+        HttpSession session =  SessionCollect.find(request);
+        return (Member) session.getAttribute("Member");
+    }
+
+    @RequestMapping(value="/cart/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    @LoginRequired
+    public Cart delete(@PathVariable int id, HttpServletRequest request){
+        Member member = getMember(request);
+        Cart cart = getCart(id, member);
+
+        cartService.deleteById(String.valueOf(cart.getRec_id()));
+
+        return cart;
+    }
+
+    private Cart getCart(int id, Member member) {
+        Cart cart = (Cart) cartService.selectById(String.valueOf(id));
+        if(cart == null || cart.getUser_id() != member.getUser_id())
+            throw new ResourceNotFoundException(messageSourceUtils.getMessage("cart.not.found"));
+        return cart;
+    }
+
+    @RequestMapping(value="/cart/update", method = RequestMethod.PUT)
+    @ResponseBody
+    @LoginRequired
+    public Cart update(@Valid @RequestBody UpdateCartForm form, HttpServletRequest request) {
+        Member member = getMember(request);
+        Cart cart = getCart(form.getCart_id(), member);
+
+        cart.setQuantity(form.getQuantity());
+        cartService.update(cart);
+        return null;
+    }
 }

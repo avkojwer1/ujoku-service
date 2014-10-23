@@ -62,7 +62,13 @@
                 <input type="button" value="Show My Cart" onclick="cart.shoppingCart();" style="margin: 5px 0;"/><br/>
                 GoodsId:<input class="textbox" type="text" id="c_goodsId" style="width: 100px;"/>
                 qty:<input class="textbox" type="text" id="c_qty" style="width: 100px;"/>
-                <input type="button" value="Add" onclick="cart.add();"/>
+                <input type="button" value="Add" onclick="cart.add();"/> <br/>
+                CartId:<input class="textbox" type="text" id="c_cartId2" style="width: 100px;"/>
+                qty:<input class="textbox" type="text" id="c_qty2" style="width: 100px;"/>
+                <input type="button" value="Add" onclick="cart.update();"/> <br/>
+
+                CartId: <input class="textbox" type="text" id="c_cartId" style="width: 100px;"/>
+                <input type="button" value="Delete" onclick="cart.delete();"/><br/>
             </div>
          </div>
     </div>
