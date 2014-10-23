@@ -6,16 +6,15 @@ import com.labillusion.core.platform.web.rest.RESTController;
 import com.ujoku.domain.Cart;
 import com.ujoku.domain.Member;
 import com.ujoku.interceptor.LoginRequired;
+import com.ujoku.request.body.AddToCartForm;
 import com.ujoku.service.CartService;
 import com.ujoku.view.domain.ShoppingCartView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +47,18 @@ public class CartController extends RESTController {
     @RequestMapping(value="/cart/add", method = RequestMethod.POST)
     @ResponseBody
     @LoginRequired
-    public Cart add(){
+    public Cart add(@Valid @RequestBody AddToCartForm form, HttpServletRequest request){
+        HttpSession session =  SessionCollect.find(request);
+        Member member = (Member) session.getAttribute("Member");
 
+        Cart cart = new Cart();
+        cart.setGoods_id(form.getGoods_id());
+        cart.setQuantity(form.getQuantity());
+        cart.setUser_id(member.getUser_id());
 
-        return null;
+        service.insert(cart);
+
+        return cart;
     }
 
 }

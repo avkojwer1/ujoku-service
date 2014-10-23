@@ -9,7 +9,7 @@
         </if>
     </select>
 
-    <insert id="insert" parameterType="com.ujoku.domain.Cart" >
+    <insert id="insert" parameterType="com.ujoku.domain.Cart" useGeneratedKeys="true" keyProperty="user_id">
         INSERT INTO y9_cart
         (
         user_id ,

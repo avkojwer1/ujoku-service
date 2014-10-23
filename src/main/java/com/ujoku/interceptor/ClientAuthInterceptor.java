@@ -23,15 +23,10 @@ public class ClientAuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String url = request.getRequestURI();
+        String uri = request.getRequestURI();
 
-        if("/".equals(url)){
+        if(WhiteList.check(uri))
             return true;
-        }
-
-        if(url.endsWith("js") || url.endsWith("css") || url.endsWith("png") || url.endsWith("jpg")  || url.endsWith("gif")){
-            return true;
-        }
 
         String clientId = request.getHeader(AuthConstant.HEADER_CLIENT_ID);
         String secretKey = request.getHeader(AuthConstant.HEADER_Secret_Key);

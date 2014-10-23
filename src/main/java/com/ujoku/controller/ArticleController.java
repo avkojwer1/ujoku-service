@@ -1,18 +1,10 @@
 package com.ujoku.controller;
 
-import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.platform.web.rest.RESTController;
 import com.ujoku.domain.Article;
-import com.ujoku.domain.Goods;
 import com.ujoku.service.ArticleService;
-import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
-import static ch.lambdaj.Lambda.having;
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.Lambda.select;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.ujoku.requestbody;
+package com.ujoku.request.body;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

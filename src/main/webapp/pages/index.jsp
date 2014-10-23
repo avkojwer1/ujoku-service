@@ -59,7 +59,10 @@
 
             <div>
                 <strong>[Cart]</strong><br/>
-                <input type="button" value="Show My Cart" onclick="cart.shoppingCart();"/>
+                <input type="button" value="Show My Cart" onclick="cart.shoppingCart();" style="margin: 5px 0;"/><br/>
+                GoodsId:<input class="textbox" type="text" id="c_goodsId" style="width: 100px;"/>
+                qty:<input class="textbox" type="text" id="c_qty" style="width: 100px;"/>
+                <input type="button" value="Add" onclick="cart.add();"/>
             </div>
          </div>
     </div>

@@ -1,12 +1,14 @@
 package com.ujoku.interceptor;
 
 import com.labillusion.core.platform.exception.ResourceNotFoundException;
+import com.labillusion.core.platform.http.HTTPHeaders;
 import com.labillusion.core.util.StringUtils;
 import com.ujoku.domain.Visitor;
 import com.ujoku.service.ClientService;
 import com.ujoku.service.VisitorService;
 import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,25 +21,27 @@ import java.util.logging.Logger;
 public class VisitorInterceptor extends HandlerInterceptorAdapter {
 
     public static final String CURRENT_VISITOR = "currentVisitor";
-    public static final String VISITOR_ID = "Visitor-Id";
 
     private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(VisitorInterceptor.class);
 
     @Autowired
     private VisitorService service;
 
+    @Autowired
+    private MessageSource resources;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.debug("VisitorInterceptor ----- preHandle -----------------------------------------------");
+        logger.debug("VisitorInterceptor ---------- preHandle -----------------------------------------------");
 
-        String visitorId = request.getHeader(VISITOR_ID);
+        String visitorId = request.getHeader(HTTPHeaders.VISITOR_ID);
         if(!StringUtils.hasText(visitorId)){
             return true;
         }
 
         Visitor visitor = (Visitor) service.selectById(visitorId);
         if(visitor == null)
-            throw new ResourceNotFoundException("can not found visitor by id.");
+            throw new ResourceNotFoundException( resources.getMessage("visitor.not.found", null, "Default", null));
 
         visitor.setUser_agent(request.getHeader("User-Agent"));
         String ipAddress = request.getHeader("X-FORWARDED-FOR");

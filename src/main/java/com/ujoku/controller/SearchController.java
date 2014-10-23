@@ -2,7 +2,7 @@ package com.ujoku.controller;
 
 import com.labillusion.core.platform.web.rest.RESTController;
 import com.ujoku.domain.Goods;
-import com.ujoku.requestbody.SearchFilter;
+import com.ujoku.request.body.SearchFilter;
 import com.ujoku.service.GoodsService;
 import com.ujoku.view.builder.SearchViewBuilder;
 import com.ujoku.view.domain.SearchView;

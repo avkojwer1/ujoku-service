@@ -140,5 +140,17 @@ var cart = {
             dataType: "json"
         };
         showResult(settings);
+    },
+    add : function(){
+        var settings = {
+            type:"POST",
+            url:"/cart/add",
+            dataType: "json",
+            data:JSON.stringify( {
+                "goods_id" : $("#c_goodsId").val(),
+                "quantity" : $("#c_qty").val()
+            })
+        };
+        showResult(settings);
     }
 }
