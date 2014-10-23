@@ -122,6 +122,6 @@ public class CartController extends RESTController {
 
         cart.setQuantity(form.getQuantity());
         cartService.update(cart);
-        return null;
+        return cart;
     }
 }

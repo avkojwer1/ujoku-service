@@ -65,7 +65,7 @@
                 <input type="button" value="Add" onclick="cart.add();"/> <br/>
                 CartId:<input class="textbox" type="text" id="c_cartId2" style="width: 100px;"/>
                 qty:<input class="textbox" type="text" id="c_qty2" style="width: 100px;"/>
-                <input type="button" value="Add" onclick="cart.update();"/> <br/>
+                <input type="button" value="Update" onclick="cart.update();"/> <br/>
 
                 CartId: <input class="textbox" type="text" id="c_cartId" style="width: 100px;"/>
                 <input type="button" value="Delete" onclick="cart.delete();"/><br/>

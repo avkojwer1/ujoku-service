@@ -20,7 +20,7 @@ public class smsTest {
     @Test
     public void test() throws IOException {
         String uri = "http://api.sojisms.com:8082/sendsms.aspx?suser=lyhotel&spass=a3582a&telnum=18006003050&nr=";
-        String nr = new String("hello【优酒库】".getBytes(),"gb2312");
+        String nr = new String("123456【优酒库】".getBytes(),"gb2312");
 
         HttpClient client = HttpClientBuilder.create().build();
 
