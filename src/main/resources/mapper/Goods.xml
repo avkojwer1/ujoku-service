@@ -3,7 +3,7 @@
 <mapper namespace="com.ujoku.domain.Goods">
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="true"/>
 
-    <select id="select" resultType="com.ujoku.domain.Goods" parameterType="java.lang.String">
+    <select id="select" resultType="com.ujoku.domain.Goods">
         Select type
             ,tags
             ,store_id

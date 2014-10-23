@@ -9,17 +9,17 @@ import java.util.List;
  */
 public class ShoppingCartView {
 
-    private List<Cart> list;
+    private List<CartView> list;
 
     public ShoppingCartView(List list) {
         this.list = list;
     }
 
-    public List<Cart> getList() {
+    public List<CartView> getList() {
         return list;
     }
 
-    public void setList(List<Cart> list) {
+    public void setList(List<CartView> list) {
         this.list = list;
     }
 }

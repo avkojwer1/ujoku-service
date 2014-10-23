@@ -2,6 +2,7 @@ package com.ujoku.interceptor;
 
 import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.platform.http.HTTPHeaders;
+import com.labillusion.core.util.MessageSourceUtils;
 import com.labillusion.core.util.StringUtils;
 import com.ujoku.domain.Visitor;
 import com.ujoku.service.ClientService;
@@ -28,7 +29,7 @@ public class VisitorInterceptor extends HandlerInterceptorAdapter {
     private VisitorService service;
 
     @Autowired
-    private MessageSource resources;
+    private MessageSourceUtils resources;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -41,7 +42,7 @@ public class VisitorInterceptor extends HandlerInterceptorAdapter {
 
         Visitor visitor = (Visitor) service.selectById(visitorId);
         if(visitor == null)
-            throw new ResourceNotFoundException( resources.getMessage("visitor.not.found", null, "Default", null));
+            throw new ResourceNotFoundException( resources.getMessage("visitor.not.found"));
 
         visitor.setUser_agent(request.getHeader("User-Agent"));
         String ipAddress = request.getHeader("X-FORWARDED-FOR");

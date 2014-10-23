@@ -4,6 +4,7 @@ package com.ujoku.service.impl;
 import com.labillusion.core.database.base.mybatis.dao.BaseDao;
 import com.labillusion.core.database.base.mybatis.service.base.impl.BaseServiceImpl;
 import com.labillusion.core.platform.exception.ResourceNotFoundException;
+import com.labillusion.core.util.MessageSourceUtils;
 import com.ujoku.dao.GoodsDao;
 import com.ujoku.domain.Goods;
 import com.ujoku.service.GoodsService;
@@ -30,12 +31,24 @@ public class GoodServiceImpl extends BaseServiceImpl<Goods> implements GoodsServ
         return goodDao;
     }
 
+    @Autowired
+    private MessageSourceUtils resources;
+
     @Override
     public Goods selectById(int id) {
         List<Goods> list =  super.selectList(null);
         List<Goods> result = select(list, having(on(Goods.class).getGoods_id(), Matchers.equalTo(id)));
         if(result == null || result.size() == 0)
-            throw new ResourceNotFoundException("can not found article by id.");
+            throw new ResourceNotFoundException(resources.getMessage("goods.not.found"));
+
+        return  result.get(0);
+    }
+
+    @Override
+    public Goods selectById(List<Goods> list, int id) {
+        List<Goods> result = select(list, having(on(Goods.class).getGoods_id(), Matchers.equalTo(id)));
+        if(result == null || result.size() == 0)
+            throw new ResourceNotFoundException(resources.getMessage("goods.not.found"));
 
         return  result.get(0);
     }

@@ -4,17 +4,16 @@ import com.labillusion.core.platform.exception.SessionTimeOutException;
 import com.labillusion.core.platform.exception.UserAuthorizationException;
 import com.labillusion.core.platform.http.HTTPHeaders;
 import com.labillusion.core.platform.web.listener.SessionCollect;
+import com.labillusion.core.util.MessageSourceUtils;
 import com.labillusion.core.util.StringUtils;
 import com.ujoku.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Locale;
 
 /**
  * Created by greg.chen on 14-10-21.
@@ -24,9 +23,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(SessionInterceptor.class);
 
     @Autowired
-    private MessageSource resources;
-
-    private final static String Session_Expired = "The session has expired";
+    private MessageSourceUtils resources;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -38,7 +35,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 
         String sessionId = request.getHeader(HTTPHeaders.SESSION_ID);
         //如果Annotation标识有LoginRequired, 判断method是否含有customer session
-        checkLoginRequired((HandlerMethod) handler, sessionId);
+        checkLoginRequired(handler, sessionId);
 
         if("/session/create".equals(request.getRequestURI()))
             return true;
@@ -48,13 +45,13 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 
         HttpSession session = SessionCollect.find(sessionId);
         if(session == null)
-            throw new SessionTimeOutException(Session_Expired);
+            throw new SessionTimeOutException(resources.getMessage("session.expired"));
 
         return true;
     }
 
     private void checkLoginRequired(Object handler, String sessionId) {
-        String message = resources.getMessage("session.login.required", null, "Default", null);
+        String message = resources.getMessage("session.login.required");
 
         if(((HandlerMethod) handler).getMethod().isAnnotationPresent(LoginRequired.class)){
             if(!StringUtils.hasText(sessionId))
