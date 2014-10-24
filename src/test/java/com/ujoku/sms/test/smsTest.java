@@ -1,5 +1,7 @@
 package com.ujoku.sms.test;
 
+import com.ujoku.base.BaseTest;
+import com.ujoku.service.SMSService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -7,6 +9,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -15,24 +18,25 @@ import java.net.URLEncoder;
 /**
  * Created by Administrator on 2014/10/24.
  */
-public class smsTest {
+public class smsTest extends BaseTest{
+
+    @Autowired
+    private SMSService service;
 
     @Test
     public void test() throws IOException {
-        String uri = "http://api.sojisms.com:8082/sendsms.aspx?suser=lyhotel&spass=a3582a&telnum=18006003050&nr=";
-        String nr = new String("123456【优酒库】".getBytes(),"gb2312");
+        service.toYiChi("13860449850", "753332");
+    }
 
-        HttpClient client = HttpClientBuilder.create().build();
+    @Test
+    public void randomTest(){
+        String s = "";
+        for(int i=0;i<6;i++)
+        {
+            s +=(int)(Math.random()*10);
+        }
 
-        HttpRequestBase request = new HttpGet(uri+ nr);
-
-        HttpResponse response = client.execute(request);
-        int responseCode = response.getStatusLine().getStatusCode();
-        System.out.println(responseCode);
-        byte[] content = EntityUtils.toByteArray(response.getEntity());
-
-        System.out.println(new String(content));
-        request.releaseConnection();
+        System.out.println(s);
     }
 
 }

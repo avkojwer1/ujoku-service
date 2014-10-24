@@ -129,6 +129,18 @@ var member ={
         };
 
         showResult(settings);
+    },
+    sendSMS: function(){
+        var settings = {
+            type:"POST",
+            url:"/member/sendSMS",
+            dataType: "json",
+            data:JSON.stringify( {
+                "phone" : $("#c_phone").val()
+            })
+        };
+
+        showResult(settings);
     }
 }
 
