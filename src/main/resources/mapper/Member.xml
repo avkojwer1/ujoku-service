@@ -4,13 +4,14 @@
 
 
     <select id="select" resultType="com.ujoku.domain.Member" parameterType="java.lang.String">
-        Select * from y9_Member where user_name=#{name}
+        Select * from y9_Member where user_name=#{user_name}
     </select>
 
     <insert id="insert" parameterType="com.ujoku.domain.Member">
          INSERT INTO y9_Member(user_name, password, reg_time,feed_config)
          value (#{user_name},#{password}, #{reg_time},"")
     </insert>
+
 
 
 </mapper>

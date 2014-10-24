@@ -21,9 +21,8 @@ public class MemberServiceTest extends BaseTest {
 
     @Test
     public void selectOneTest(){
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("name","15605922222");
-        Object o = service.selectOne(query);
+
+        Object o = service.selectByUserName("jingjing");
         Assert.isTrue(o != null);
     }
 

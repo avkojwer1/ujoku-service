@@ -79,15 +79,16 @@ public class MemberController extends RESTController {
 
     @RequestMapping(value="/member/create", method = RequestMethod.POST)
     @ResponseBody
-    public Member Create(@Valid @RequestBody MemberCreateForm form, HttpServletRequest request) throws Exception {
+    public String Create(@Valid @RequestBody MemberCreateForm form, HttpServletRequest request) throws Exception {
         HttpSession session = SessionCollect.find(request);
+
         Calendar expiredTime = (Calendar) session.getAttribute("CaptchaExpiredTime");
         String captcha = (String) session.getAttribute("Captcha");
         //如果验证码时间过期, throw exception
         if(!form.getCaptcha().equals(captcha) || Calendar.getInstance().after(expiredTime))
             throw new InvalidRequestException(messageSourceUtils.getMessage("captcha.not.match"));
 
-        Member member = getMember(form.getUserName());
+        Member member = (Member) service.selectByUserName(form.getUserName());
 
         if(member != null)
            throw new InvalidRequestException(messageSourceUtils.getMessage("member.has.registered"));
@@ -97,29 +98,16 @@ public class MemberController extends RESTController {
         member.setPassword(MD5.encrypt(form.getPassword()));
         member.setReg_time(System.currentTimeMillis() / 1000L);
         service.insert(member);
-
-        return member;
-    }
-
-    /**
-     * 检查用户是否存在
-     * @param user_name
-     */
-    private Member getMember(String user_name) {
-        Map<String, Object> query = new HashMap<String, Object>();
-        query.put("user_name",user_name);
-        Member member = (Member) service.selectOne(query);
-        return member;
+        //清空验证码
+        session.setAttribute("Captcha", null);
+        return "Successfully";
     }
 
 
     @RequestMapping(value="/member/sendSMS", method = RequestMethod.POST)
     @ResponseBody
     public String sendSMS(HttpServletRequest request, @Valid @RequestBody SendSMSForm form) throws IOException {
-
         HttpSession session = SessionCollect.find(request);
-        if(session == null)
-            throw new SessionTimeOutException(messageSourceUtils.getMessage("session.expired"));
 
         String captcha = SMSService.CalculateCaptcha();
         session.setAttribute("Captcha",captcha);

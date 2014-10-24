@@ -60,6 +60,10 @@
                 <strong>[Member]</strong><br/>
                 Phone:<input type="text" id="c_phone" style="width: 100px;"/>
                 <input type="button" value="sendSMS" onclick="member.sendSMS();"/>
+                UserName:<input type="text" id="c_userName" style="width: 100px;"/>
+                Password:<input type="text" id="c_password" style="width: 100px;"/>
+                Captcha:<input type="text" id="c_captcha" style="width: 100px;"/>
+                <input type="button" value="Create" onclick="member.create();"/>
             </div>
             <div>
                 <strong>[Cart]</strong><br/>

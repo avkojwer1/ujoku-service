@@ -139,6 +139,19 @@ var member ={
                 "phone" : $("#c_phone").val()
             })
         };
+        showResult(settings);
+    },
+    create:function(){
+        var settings = {
+            type:"POST",
+            url:"/member/create",
+            dataType: "json",
+            data:JSON.stringify( {
+                "userName" : $("#c_userName").val(),
+                "password" : $("#c_password").val(),
+                "captcha" : $("#c_captcha").val()
+            })
+        };
 
         showResult(settings);
     }
