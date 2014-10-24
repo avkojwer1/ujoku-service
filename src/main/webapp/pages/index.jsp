@@ -58,7 +58,7 @@
             </div>
             <div>
                 <strong>[Member]</strong><br/>
-                phone:<input type="text" id="c_phone" style="width: 100px;"/>
+                Phone:<input type="text" id="c_phone" style="width: 100px;"/>
                 <input type="button" value="sendSMS" onclick="member.sendSMS();"/>
             </div>
             <div>
