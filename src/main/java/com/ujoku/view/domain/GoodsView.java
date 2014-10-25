@@ -149,4 +149,13 @@ public class GoodsView{
     private String default_image2;
     private String default_image;
     private String brand;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }
