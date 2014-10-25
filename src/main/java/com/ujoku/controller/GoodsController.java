@@ -4,6 +4,7 @@ import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.platform.web.rest.RESTController;
 import com.ujoku.domain.Goods;
 import com.ujoku.domain.GoodsSpec;
+import com.ujoku.service.CdnService;
 import com.ujoku.service.GoodsService;
 import com.ujoku.service.GoodsSpecService;
 import com.ujoku.view.builder.GoodsViewBuilder;
@@ -24,6 +25,9 @@ public class GoodsController extends RESTController {
 
     @Autowired
     private GoodsViewBuilder goodsViewBuilder;
+
+    @Autowired
+    private CdnService cdnService;
 
     @RequestMapping(value="/goods/{id}", method = RequestMethod.GET)
     @ResponseBody

@@ -3,6 +3,7 @@ package com.ujoku.controller;
 import com.labillusion.core.platform.web.rest.RESTController;
 import com.ujoku.domain.Goods;
 import com.ujoku.request.body.SearchFilter;
+import com.ujoku.service.CdnService;
 import com.ujoku.service.GoodsService;
 import com.ujoku.view.builder.SearchViewBuilder;
 import com.ujoku.view.domain.SearchView;
@@ -37,7 +38,9 @@ public class SearchController extends RESTController {
     public SearchView search(@Valid @RequestBody SearchFilter searchFilter) throws Exception {
         logger.debug(searchFilter.toString());
 
-        List<Goods> list = goodsService.selectList(null);
+        List<Goods> list = goodsService.selectList();
+
+
         List<Goods> result = new ArrayList<Goods>();
         if(searchFilter.getCategoryId() > 0)
             result.addAll(select(list, having(on(Goods.class).getCate_id(), Matchers.equalTo(searchFilter.getCategoryId()))));

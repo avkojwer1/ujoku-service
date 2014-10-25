@@ -8,6 +8,7 @@ import com.labillusion.core.util.MessageSourceUtils;
 import com.ujoku.dao.GoodsDao;
 import com.ujoku.domain.Goods;
 import com.ujoku.domain.GoodsSpec;
+import com.ujoku.service.CdnService;
 import com.ujoku.service.GoodsService;
 import com.ujoku.service.GoodsSpecService;
 import org.hamcrest.Matchers;
@@ -38,9 +39,22 @@ public class GoodServiceImpl extends BaseServiceImpl<Goods> implements GoodsServ
     @Autowired
     private GoodsSpecService goodsSpecService;
 
+    @Autowired
+    private CdnService cdnService;
+
+    @Override
+    public List<Goods> selectList(){
+        List<Goods> list = super.selectList(null);
+        list.forEach(i->{
+            i.setDefault_image(cdnService.builder(i.getDefault_image()));
+            i.setDefault_image2(cdnService.builder(i.getDefault_image2()));
+        });
+        return list;
+    }
+
     @Override
     public Goods selectById(int id) {
-        List<Goods> list =  super.selectList(null);
+        List<Goods> list =  this.selectList();
         List<Goods> result = select(list, having(on(Goods.class).getGoods_id(), Matchers.equalTo(id)));
         if(result == null || result.size() == 0)
             throw new ResourceNotFoundException(resources.getMessage("goods.not.found"));
