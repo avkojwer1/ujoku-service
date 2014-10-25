@@ -227,5 +227,13 @@ var address = {
             })
         };
         showResult(settings);
+    },
+    getMemberAddress:function(){
+        var settings = {
+            type:"Get",
+            url:"/address",
+            dataType: "json"
+        };
+        showResult(settings);
     }
 }

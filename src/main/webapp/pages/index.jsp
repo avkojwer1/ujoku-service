@@ -92,6 +92,8 @@
             address: <input type="text" id="a_address" style="width: 100px;"/>
             phone_mob: <input type="text" id="a_phone_mob" style="width: 100px;"/>
             <input type="button" value="Create" onclick="address.create();"/><br/>
+
+            <input type="button" value="Get member address" onclick="address.getMemberAddress();"/><br/>
         </div>
         <div style="clear: both;"></div>
     </div>
