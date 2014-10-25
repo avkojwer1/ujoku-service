@@ -13,6 +13,7 @@ import com.ujoku.domain.Visitor;
 import com.ujoku.interceptor.VisitorInterceptor;
 import com.ujoku.request.body.LoginForm;
 import com.ujoku.request.body.MemberCreateForm;
+import com.ujoku.request.body.MemberUpdateForm;
 import com.ujoku.request.body.SendSMSForm;
 import com.ujoku.service.MemberService;
 import com.ujoku.service.SMSService;
@@ -52,7 +53,7 @@ public class MemberController extends RESTController {
     public String Login(@Valid @RequestBody LoginForm form, HttpServletRequest request) throws Exception {
 
         Map<String, Object> query = new HashMap<String, Object>();
-        query.put("name",form.getUserName());
+        query.put("user_name",form.getUserName());
         Member member = (Member) service.selectOne(query);
         if(member == null || !MD5.encrypt(form.getPassword()).equals(member.getPassword()))
             throw new UserAuthorizationException("The User name or password did not match our records");
@@ -82,11 +83,7 @@ public class MemberController extends RESTController {
     public String Create(@Valid @RequestBody MemberCreateForm form, HttpServletRequest request) throws Exception {
         HttpSession session = SessionCollect.find(request);
 
-        Calendar expiredTime = (Calendar) session.getAttribute("CaptchaExpiredTime");
-        String captcha = (String) session.getAttribute("Captcha");
-        //如果验证码时间过期, throw exception
-        if(!form.getCaptcha().equals(captcha) || Calendar.getInstance().after(expiredTime))
-            throw new InvalidRequestException(messageSourceUtils.getMessage("captcha.not.match"));
+        CheckCaptcha(form, session);
 
         Member member = (Member) service.selectByUserName(form.getUserName());
 
@@ -98,9 +95,22 @@ public class MemberController extends RESTController {
         member.setPassword(MD5.encrypt(form.getPassword()));
         member.setReg_time(System.currentTimeMillis() / 1000L);
         service.insert(member);
+
+        session.setAttribute("Member", member);
+        Visitor visitor = (Visitor) request.getAttribute(VisitorInterceptor.CURRENT_VISITOR);
+        visitor.setUser_id(member.getUser_id());
+
         //清空验证码
         session.setAttribute("Captcha", null);
         return "Successfully";
+    }
+
+    private void CheckCaptcha(MemberCreateForm form, HttpSession session) {
+        Calendar expiredTime = (Calendar) session.getAttribute("CaptchaExpiredTime");
+        String captcha = (String) session.getAttribute("Captcha");
+        //如果验证码时间过期, throw exception
+        if(!form.getCaptcha().equals(captcha) || Calendar.getInstance().after(expiredTime))
+            throw new InvalidRequestException(messageSourceUtils.getMessage("captcha.not.match"));
     }
 
 
@@ -120,6 +130,27 @@ public class MemberController extends RESTController {
 
         return "Successfully";
     }
+
+    @RequestMapping(value="/member/update", method = RequestMethod.PUT)
+    @ResponseBody
+    public String update(@Valid @RequestBody MemberUpdateForm form, HttpServletRequest request) throws Exception {
+        HttpSession session = SessionCollect.find(request);
+        CheckCaptcha(form, session);
+
+        Member member = (Member) service.selectByUserName(form.getUserName());
+        if(member == null)
+            throw new InvalidRequestException(messageSourceUtils.getMessage("member.not.found"));
+
+        member.setPassword(MD5.encrypt(form.getPassword()));
+        service.update(member);
+
+        session.setAttribute("Member", member);
+        Visitor visitor = (Visitor) request.getAttribute(VisitorInterceptor.CURRENT_VISITOR);
+        visitor.setUser_id(member.getUser_id());
+
+        return "Successfully";
+    }
+
 
 
 }

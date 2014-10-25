@@ -12,9 +12,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class GoodsViewBuilder extends BaseViewBuilder<Goods,GoodsView> {
 
-    public GoodsView Create(Goods goods, GoodsSpec goodsSpec) throws Exception {
-        GoodsView goodsView = super.Create(goods);
-        goodsView.setStock(goodsSpec== null? 0:goodsSpec.getStock());
-        return goodsView;
-    }
 }

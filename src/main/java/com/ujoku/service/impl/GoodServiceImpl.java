@@ -7,7 +7,9 @@ import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.util.MessageSourceUtils;
 import com.ujoku.dao.GoodsDao;
 import com.ujoku.domain.Goods;
+import com.ujoku.domain.GoodsSpec;
 import com.ujoku.service.GoodsService;
+import com.ujoku.service.GoodsSpecService;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,8 @@ public class GoodServiceImpl extends BaseServiceImpl<Goods> implements GoodsServ
 
     @Autowired
     private MessageSourceUtils resources;
+    @Autowired
+    private GoodsSpecService goodsSpecService;
 
     @Override
     public Goods selectById(int id) {
@@ -41,7 +45,10 @@ public class GoodServiceImpl extends BaseServiceImpl<Goods> implements GoodsServ
         if(result == null || result.size() == 0)
             throw new ResourceNotFoundException(resources.getMessage("goods.not.found"));
 
-        return  result.get(0);
+        Goods goods= result.get(0);
+        GoodsSpec goodsSpec = goodsSpecService.selectGoodsSpecById(id);
+        goods.setStock(goodsSpec.getStock());
+        return  goods;
     }
 
     @Override

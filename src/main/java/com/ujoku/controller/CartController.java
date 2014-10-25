@@ -3,6 +3,7 @@ package com.ujoku.controller;
 import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.platform.web.listener.SessionCollect;
 import com.labillusion.core.platform.web.rest.RESTController;
+import com.labillusion.core.platform.web.rest.exception.InvalidRequestException;
 import com.labillusion.core.util.MessageSourceUtils;
 import com.ujoku.domain.Cart;
 import com.ujoku.domain.Goods;
@@ -62,8 +63,10 @@ public class CartController extends RESTController {
     public Cart add(@Valid @RequestBody AddToCartForm form, HttpServletRequest request){
         //判断Goods是否存在
         Goods goods = goodsService.selectById(form.getGoods_id());
-        Member member = getMember(request);
+        if(form.getQuantity() > goods.getStock())
+            throw new InvalidRequestException(messageSourceUtils.getMessage("goods.out.of.stock"));
 
+        Member member = getMember(request);
         Map<String, Object> query = new HashMap<String, Object>();
         query.put("user_id", member.getUser_id());
         List<Cart> carts = cartService.selectList(query);

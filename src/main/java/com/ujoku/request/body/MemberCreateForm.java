@@ -1,12 +1,8 @@
 package com.ujoku.request.body;
 
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 
-
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
@@ -37,7 +33,9 @@ public class MemberCreateForm {
             @Size(max=20, message="The field must be less than {max} characters")
     })
     private String password;
+
     @NotEmpty
+    @Size(max=6,  message="The field must be less than {max} characters")
     private String Captcha;
 
     public String getCaptcha() {

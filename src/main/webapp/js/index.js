@@ -154,6 +154,20 @@ var member ={
         };
 
         showResult(settings);
+    },
+    update:function(){
+        var settings = {
+            type:"PUT",
+            url:"/member/update",
+            dataType: "json",
+            data:JSON.stringify( {
+                "userName" : $("#u_userName").val(),
+                "password" : $("#u_password").val(),
+                "captcha" : $("#u_captcha").val()
+            })
+        };
+
+        showResult(settings);
     }
 }
 
@@ -194,6 +208,22 @@ var cart = {
             data:JSON.stringify( {
                 "cart_id" : $("#c_cartId2").val(),
                 "quantity" : $("#c_qty2").val()
+            })
+        };
+        showResult(settings);
+    }
+}
+
+var address = {
+    create: function(){
+        var settings = {
+            type:"POST",
+            url:"/address/create",
+            dataType: "json",
+            data:JSON.stringify( {
+                "consignee" : $("#a_consignee").val(),
+                "address" : $("#a_address").val(),
+                "phone_mob" : $("#a_phone_mob").val()
             })
         };
         showResult(settings);

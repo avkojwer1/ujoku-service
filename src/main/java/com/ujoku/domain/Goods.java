@@ -7,6 +7,15 @@ public class Goods {
 
     private String type;
     private String tags;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     @Override
     public String toString() {

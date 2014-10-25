@@ -23,17 +23,13 @@ public class GoodsController extends RESTController {
     private GoodsService service;
 
     @Autowired
-    private GoodsSpecService goodsSpecService;
-
-    @Autowired
     private GoodsViewBuilder goodsViewBuilder;
 
     @RequestMapping(value="/goods/{id}", method = RequestMethod.GET)
     @ResponseBody
     public GoodsView getGoodById(@PathVariable int id) throws Exception {
         Goods goods = service.selectById(id);
-        GoodsSpec goodsSpec = goodsSpecService.selectGoodsSpecById(goods.getGoods_id());
-        return goodsViewBuilder.Create(goods, goodsSpec);
+        return goodsViewBuilder.Create(goods);
     }
 
 }
