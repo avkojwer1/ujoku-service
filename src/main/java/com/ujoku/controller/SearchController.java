@@ -87,11 +87,11 @@ public class SearchController extends RESTController {
             List<Integer> cateIdList = result.stream().map(g-> g.getCate_id_1()).distinct().collect(Collectors.toList());
 
             r_gCategories = gCategories.stream().filter(c -> cateIdList.contains(c.getCate_id())).collect(Collectors.toList()); 
-            refinement.setCategoriesList(r_gCategories);
+            refinement.setCategories(r_gCategories);
         }
         //如果form传入category id,找出所有的子类category
         else if(form.getCategoryId() > 0){
-            refinement.setCategoriesList(gCategories.stream().
+            refinement.setCategories(gCategories.stream().
                     filter(c -> c.getParent_id() == form.getCategoryId()).collect(Collectors.toList()));
         }
 

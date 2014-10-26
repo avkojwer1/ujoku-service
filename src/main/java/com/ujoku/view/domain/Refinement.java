@@ -5,15 +5,15 @@ import com.ujoku.domain.GCategory;
 import java.util.List;
 
 public class Refinement{
-    List<GCategory> categoriesList;
+    List<GCategory> categories;
 
     public List<GCategory> getCategoriesList() {
-        return categoriesList;
+        return categories;
     }
 
-    public void setCategoriesList(List<GCategory> categoriesList) {
+    public void setCategories(List<GCategory> categoriesList) {
         if(categoriesList == null || categoriesList.size() == 0)
             return;
-        this.categoriesList = categoriesList;
+        this.categories = categoriesList;
     }
 }
