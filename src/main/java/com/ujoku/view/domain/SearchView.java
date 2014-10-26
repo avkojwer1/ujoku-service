@@ -1,5 +1,6 @@
 package com.ujoku.view.domain;
 
+import com.ujoku.domain.GCategory;
 import com.ujoku.domain.Goods;
 
 import java.util.List;
@@ -20,6 +21,16 @@ public class SearchView {
 
     private int count;
 
+    public Refinement getRefinement() {
+        return refinement;
+    }
+
+    public void setRefinement(Refinement refinement) {
+        this.refinement = refinement;
+    }
+
+    private Refinement refinement;
+
     public int getCount() {
         return count;
     }
@@ -28,3 +39,5 @@ public class SearchView {
         this.count = count;
     }
 }
+
+

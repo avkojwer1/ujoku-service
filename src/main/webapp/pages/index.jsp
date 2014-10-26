@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -40,7 +41,9 @@
 
                 <div>
                     <strong>[Search]</strong><br/>
+                    FreeText: <input class="textbox" type="text" id="freeText" style="width: 100px;"/>
                     CategoryId:<input class="textbox" type="text" id="categoryId" style="width: 100px;"/>
+                    PriceRange:<input class="textbox" type="text" id="minPrice" style="width: 50px;"/> --<input class="textbox" type="text" id="maxPrice" style="width: 50px;"/>
                     Sort:<input class="textbox" type="text" id="order" style="width: 100px;"/>
                     <input type="button" value="Search" onclick="goods.search();"/>
                 </div>
@@ -101,7 +104,7 @@
 
     <div style="margin-top: 7px; height:27px;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
         <b>Requested URL: </b>
-        <input type="text" id="requestedUrl" style="width:70%;">
+        <input type="text" id="requestedUrl" style="width:70%;" domain="<%=  request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()%>">
     </div>
 
     <div id="d_param" class="ui-tabs ui-corner-all">
@@ -115,6 +118,9 @@
                 <tr>
                     <td>SecretKey:</td>
                     <td><input type="text" id="p_secretKey"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea id="p_data" rows="20" cols="35"></textarea></td>
                 </tr>
             </table>
         </div>

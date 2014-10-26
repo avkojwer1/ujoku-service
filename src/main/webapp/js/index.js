@@ -8,12 +8,20 @@ $(function() {
     $("#selClient").change(function(){
         var optionSelected = $("option:selected", this);
         $("#secretKey").val($(optionSelected).attr("key"));
+
+        $("#p_clientId").val( $("#selClient").val());
+        $("#p_secretKey").val( $("#secretKey").val());
     })
+
+    $("#p_clientId").val( $("#selClient").val());
+    $("#p_secretKey").val( $("#secretKey").val());
 });
 
 
 function showResult(settings){
     $.fn.mask();
+    $("#requestedUrl").val(  $("#requestedUrl").attr("domain") + settings.url);
+    $("#p_data").text(settings.data == null?"":settings.data );
     $.ajax({
         type: settings.type,
         url:settings.url,
@@ -88,8 +96,10 @@ var goods = {
             url:"/search",
             dataType: "json",
             data:JSON.stringify( {
+                "freeText": $("#freeText").val(),
                 "categoryId" : $("#categoryId").val(),
-                "order" :  $("#order").val()
+                "order" :  $("#order").val(),
+                "priceRange" :[$("#minPrice").val(), $("#maxPrice").val()]
             })
         };
 

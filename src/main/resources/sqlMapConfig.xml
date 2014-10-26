@@ -18,5 +18,6 @@
         <mapper resource="mapper/Cart.xml" />
         <mapper resource="mapper/GoodsSpec.xml" />
         <mapper resource="mapper/Address.xml" />
+        <mapper resource="mapper/GCategory.xml" />
     </mappers>
 </configuration>

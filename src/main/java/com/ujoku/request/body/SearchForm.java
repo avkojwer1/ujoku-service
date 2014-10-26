@@ -8,6 +8,24 @@ import org.hibernate.validator.constraints.Range;
  */
 public class SearchForm {
 
+    private int categoryId;
+
+    private String freeText;
+
+    private String order;
+
+    private String keyword;
+
+    private int[] priceRange;
+
+    public int[] getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(int[] priceRange) {
+        this.priceRange = priceRange;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
@@ -15,8 +33,6 @@ public class SearchForm {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
-
-    private int categoryId;
 
     public String getFreeText() {
         return freeText;
@@ -26,9 +42,13 @@ public class SearchForm {
         this.freeText = freeText;
     }
 
-    private String freeText;
+    public String getKeyword() {
+        return keyword;
+    }
 
-    private String order;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
 
     public String getOrder() {
         return order;
