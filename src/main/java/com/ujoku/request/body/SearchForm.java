@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Range;
 /**
  * Created by greg.chen on 14-10-20.
  */
-public class SearchFilter {
+public class SearchForm {
 
     public int getCategoryId() {
         return categoryId;
@@ -28,12 +28,22 @@ public class SearchFilter {
 
     private String freeText;
 
+    private String order;
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
 
     @Override
     public String toString() {
-        return "SearchFilter{" +
+        return "SearchForm{" +
                 "categoryId=" + categoryId +
+                ", freeText='" + freeText + '\'' +
+                ", order='" + order + '\'' +
                 '}';
     }
-
 }

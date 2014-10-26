@@ -88,7 +88,8 @@ var goods = {
             url:"/search",
             dataType: "json",
             data:JSON.stringify( {
-                "categoryId" : $("#categoryId").val()
+                "categoryId" : $("#categoryId").val(),
+                "order" :  $("#order").val()
             })
         };
 

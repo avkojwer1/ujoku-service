@@ -150,6 +150,19 @@ public class GoodsView{
     private String default_image;
     private String brand;
     private int stock;
+    private int cate_id;
+    private int cate_id_4;
+    private int cate_id_3;
+    private int cate_id_2;
+    private int cate_id_1;
+
+    public int getCate_id() {
+        return cate_id;
+    }
+
+    public void setCate_id(int cate_id) {
+        this.cate_id = cate_id;
+    }
 
     public int getStock() {
         return stock;
@@ -158,4 +171,38 @@ public class GoodsView{
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+
+    public int getCate_id_4() {
+        return cate_id_4;
+    }
+
+    public void setCate_id_4(int cate_id_4) {
+        this.cate_id_4 = cate_id_4;
+    }
+
+    public int getCate_id_3() {
+        return cate_id_3;
+    }
+
+    public void setCate_id_3(int cate_id_3) {
+        this.cate_id_3 = cate_id_3;
+    }
+
+    public int getCate_id_2() {
+        return cate_id_2;
+    }
+
+    public void setCate_id_2(int cate_id_2) {
+        this.cate_id_2 = cate_id_2;
+    }
+
+    public int getCate_id_1() {
+        return cate_id_1;
+    }
+
+    public void setCate_id_1(int cate_id_1) {
+        this.cate_id_1 = cate_id_1;
+    }
+
 }

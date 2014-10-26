@@ -84,4 +84,6 @@
             </list>
         </property>
     </bean>
+
+    <bean id="cloner" class="com.rits.cloning.Cloner"/>
 </beans>

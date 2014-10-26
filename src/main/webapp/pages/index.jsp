@@ -41,6 +41,7 @@
                 <div>
                     <strong>[Search]</strong><br/>
                     CategoryId:<input class="textbox" type="text" id="categoryId" style="width: 100px;"/>
+                    Sort:<input class="textbox" type="text" id="order" style="width: 100px;"/>
                     <input type="button" value="Search" onclick="goods.search();"/>
                 </div>
 

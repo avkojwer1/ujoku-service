@@ -64,7 +64,7 @@ public class Goods {
     private String spec_name_1;
     private int recommended;
     private String prizeinfo;
-    private float price;
+    private Float price;
     private String mgrade_year;
     private int mgrade_norm;
     private String mgrade_ingredients;
@@ -182,7 +182,7 @@ public class Goods {
         this.prizeinfo = prizeinfo;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 

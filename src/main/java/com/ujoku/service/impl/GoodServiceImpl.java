@@ -5,6 +5,7 @@ import com.labillusion.core.database.base.mybatis.dao.BaseDao;
 import com.labillusion.core.database.base.mybatis.service.base.impl.BaseServiceImpl;
 import com.labillusion.core.platform.exception.ResourceNotFoundException;
 import com.labillusion.core.util.MessageSourceUtils;
+import com.rits.cloning.Cloner;
 import com.ujoku.dao.GoodsDao;
 import com.ujoku.domain.Goods;
 import com.ujoku.domain.GoodsSpec;
@@ -13,7 +14,10 @@ import com.ujoku.service.GoodsService;
 import com.ujoku.service.GoodsSpecService;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.util.List;
 
 import static ch.lambdaj.Lambda.having;
